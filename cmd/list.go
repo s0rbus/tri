@@ -15,6 +15,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/s0rbus/tri/todo"
@@ -35,11 +36,11 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		homeDir, err := homedir.Dir()
 		if err != nil {
-			fmt.Errorf("%v", err)
+			log.Fatalf("%v", err)
 		}
 		items, err := todo.ReadItems(homeDir + "/.tridos.json")
 		if err != nil {
-			fmt.Printf("%v", err)
+			log.Fatalf("%v", err)
 		}
 		fmt.Println(items)
 	},
